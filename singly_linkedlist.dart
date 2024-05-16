@@ -10,6 +10,8 @@ void main() {
       EmployeeInfo(name: "Dheeraj", age: 24, companyName: "Georadius"));
   list.deleteFromStart();
   list.deleteFromEnd();
+  list.searchEmployee(
+      EmployeeInfo(name: "deeraj", age: 24, companyName: "Georadius"));
   list.printList();
 }
 
@@ -65,6 +67,35 @@ class LinkedList {
       current!.next = null;
     } else {
       print("No data to delete");
+    }
+  }
+
+  void searchEmployee(EmployeeInfo data) {
+    Node? current = head;
+    bool isFounded = false;
+    if (head != null) {
+      while (current != null) {
+        if (current.data.name.toLowerCase().contains(data.name.toLowerCase()) &&
+            current.data.age
+                .toString()
+                .toLowerCase()
+                .contains(data.age.toString().toLowerCase()) &&
+            current.data.companyName
+                .toLowerCase()
+                .contains(data.companyName.toLowerCase())) {
+          isFounded = true;
+          break;
+        }
+        current = current.next;
+      }
+    } else {
+      print("No employee data found.");
+    }
+    if (isFounded) {
+      print(
+          "Found employee : (${current!.data.name},${current.data.age},${current.data.companyName})");
+    } else {
+      print("No employee found.");
     }
   }
 
