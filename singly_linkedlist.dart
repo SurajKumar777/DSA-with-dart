@@ -28,14 +28,14 @@ class Node {
   EmployeeInfo data;
   Node? next;
 
-  Node(this.data, [this.next = null]);
+  Node({required this.data, this.next});
 }
 
 class LinkedList {
   Node? head;
 
   void insertAtStart(EmployeeInfo data) {
-    head = Node(data, head);
+    head = Node(data: data, next: head);
   }
 
   void insertAtEnd(EmployeeInfo data) {
@@ -44,9 +44,9 @@ class LinkedList {
       while (current?.next != null) {
         current = current!.next;
       }
-      current!.next = Node(data);
+      current!.next = Node(data: data);
     } else {
-      head = Node(data, head);
+      head = Node(data: data, next: head);
     }
   }
 
